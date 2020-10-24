@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/src/pages/cronometro_page.dart';
 
 class HomePage extends StatelessWidget {
   final estiloTexto = new TextStyle(fontSize: 25);
   @override
+
+  // Context le permite saber a la pagina en que apagina se encuentra
+  // cual esta antes y despues, lo que le permite ir a una ruta X y volver
+
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -14,7 +19,7 @@ class HomePage extends StatelessWidget {
 
         // Body
         body: Center(
-          child: _lista(),
+          child: _lista(context),
         ),
 
         // Boton para agregar cursos
@@ -28,20 +33,42 @@ class HomePage extends StatelessWidget {
   }
 
   // Lista estatica - temporal
-  Widget _lista() {
+  Widget _lista(BuildContext context) {
     return ListView(
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.map),
           title: Text('Probabilidad y Estadistica'),
+
+          // Accion de ir a cronometro
+          onTap: () {
+            final route = MaterialPageRoute(builder: (context) {
+              return CronometroPage();
+            });
+            Navigator.push(context, route);
+          },
         ),
         ListTile(
           leading: Icon(Icons.photo_album),
           title: Text('Termodinamica'),
+          // Accion de ir a cronometro
+          onTap: () {
+            final route = MaterialPageRoute(builder: (context) {
+              return CronometroPage();
+            });
+            Navigator.push(context, route);
+          },
         ),
         ListTile(
           leading: Icon(Icons.phone),
           title: Text('Bilogia de la Celula'),
+          // Accion de ir a cronometro
+          onTap: () {
+            final route = MaterialPageRoute(builder: (context) {
+              return CronometroPage();
+            });
+            Navigator.push(context, route);
+          },
         ),
       ],
     );
