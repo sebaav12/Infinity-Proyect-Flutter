@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/src/pages/cronometro_page.dart';
 
 class HomePage extends StatelessWidget {
   final estiloTexto = new TextStyle(fontSize: 25);
@@ -26,7 +25,7 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            print('Hola Mundo!');
+            Navigator.pushNamed(context, "/new_course");
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
@@ -42,10 +41,7 @@ class HomePage extends StatelessWidget {
 
           // Accion de ir a cronometro
           onTap: () {
-            final route = MaterialPageRoute(builder: (context) {
-              return CronometroPage();
-            });
-            Navigator.push(context, route);
+            Navigator.pushNamed(context, "/curso");
           },
         ),
         ListTile(
@@ -53,10 +49,7 @@ class HomePage extends StatelessWidget {
           title: Text('Termodinamica'),
           // Accion de ir a cronometro
           onTap: () {
-            final route = MaterialPageRoute(builder: (context) {
-              return CronometroPage();
-            });
-            Navigator.push(context, route);
+            Navigator.pushNamed(context, "/curso");
           },
         ),
         ListTile(
@@ -64,10 +57,7 @@ class HomePage extends StatelessWidget {
           title: Text('Bilogia de la Celula'),
           // Accion de ir a cronometro
           onTap: () {
-            final route = MaterialPageRoute(builder: (context) {
-              return CronometroPage();
-            });
-            Navigator.push(context, route);
+            Navigator.pushNamed(context, "/curso");
           },
         ),
       ],
