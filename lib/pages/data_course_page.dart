@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CursoPage extends StatelessWidget {
+class DataCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Curso X'),
-      ),
       body: ListView(children: <Widget>[
         RaisedButton(
           child: Text("Cronometro"),

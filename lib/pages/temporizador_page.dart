@@ -46,10 +46,6 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Proyect Infinity'),
-          centerTitle: true,
-        ),
         body: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -73,7 +69,7 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                   percent: percent,
                   animation: true,
                   animateFromLastPercent: true,
-                  radius: 250.0,
+                  radius: 200.0,
                   lineWidth: 20.0,
                   progressColor: Colors.white,
                   center: Text(
@@ -83,7 +79,7 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                 ),
               ),
               SizedBox(
-                height: 10.0,
+                height: 0.0,
               ),
               Expanded(
                 child: Container(
@@ -91,8 +87,8 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30.0),
-                          topLeft: Radius.circular(30.0))),
+                          topRight: Radius.circular(15.0),
+                          topLeft: Radius.circular(15.0))),
                   child: Padding(
                     padding:
                         EdgeInsets.only(top: 30.0, left: 20.0, right: 20.0),
@@ -108,14 +104,18 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                                       "Tiempo",
                                       style: TextStyle(
                                         fontSize: 20.0,
+                                        color: Colors.black,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 30.0,
+                                      height: 15.0,
                                     ),
                                     Text(
                                       "25",
-                                      style: TextStyle(fontSize: 50.0),
+                                      style: TextStyle(
+                                        fontSize: 50.0,
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -127,14 +127,18 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                                       "Tiempo",
                                       style: TextStyle(
                                         fontSize: 20.0,
+                                        color: Colors.black,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 30.0,
+                                      height: 15.0,
                                     ),
                                     Text(
                                       "5",
-                                      style: TextStyle(fontSize: 50.0),
+                                      style: TextStyle(
+                                        fontSize: 50.0,
+                                        color: Colors.black,
+                                      ),
                                     ),
                                   ],
                                 ),

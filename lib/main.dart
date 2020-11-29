@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-// Nosotros escribimos
-// import 'src/app.dart';
-
-import 'package:infinity/src/pages/home_page.dart';
-import 'package:infinity/src/routes/routes.dart';
+import 'package:infinity/pages/home_page.dart';
+import 'package:infinity/provider/ui_provider.dart';
+import 'package:infinity/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,16 +11,21 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      routes: getApplicationRoutes(),
-      onGenerateRoute: (RouteSettings settings) {
-        print("Ruta llamada: ${settings.name}");
-        return MaterialPageRoute(
-            builder: (BuildContext context) => (HomePage()));
-      },
-      theme: ThemeData.dark(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => new UiProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: "/",
+        routes: getApplicationRoutes(),
+        onGenerateRoute: (RouteSettings settings) {
+          print("Ruta llamada: ${settings.name}");
+          return MaterialPageRoute(
+              builder: (BuildContext context) => (HomePage()));
+        },
+        theme: ThemeData.dark(),
+      ),
     );
   }
 }
