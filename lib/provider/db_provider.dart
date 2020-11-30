@@ -24,6 +24,8 @@ class DBProvider {
     final path = join(documentsDirectory.path, 'CoursesDB.db');
     print(path);
 
+    // Cada vez que se hagan cambios a la BDD se debe aumentar en una unidad la version
+
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
       await db.execute('''
