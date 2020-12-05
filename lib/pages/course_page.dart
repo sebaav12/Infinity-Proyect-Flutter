@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/provider/db_provider.dart';
+
 import 'package:infinity/provider/ui_provider.dart';
 import 'package:infinity/pages/cronometro_page.dart';
 import 'package:infinity/pages/data_course_page.dart';
@@ -26,7 +27,7 @@ class _CoursePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    DBProvider.db.database;
+    DatabaseHelper.instance.database;
 
     switch (currentIndex) {
       case 0:
