@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/pages/home_page.dart';
+import 'package:infinity/provider/course_list_provider.dart';
+
 import 'package:infinity/provider/ui_provider.dart';
 import 'package:infinity/routes/routes.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => new UiProvider()),
+        ChangeNotifierProvider(create: (_) => new CourseListProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

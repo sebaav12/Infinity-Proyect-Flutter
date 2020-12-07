@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:infinity/provider/db_provider.dart';
-import 'package:sqflite/sqflite.dart';
 
 class NewCourse extends StatefulWidget {
   @override

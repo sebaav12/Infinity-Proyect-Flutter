@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/provider/db_provider.dart';
 
 import 'package:infinity/provider/ui_provider.dart';
 import 'package:infinity/pages/cronometro_page.dart';
@@ -37,8 +36,11 @@ class _CoursePageBody extends StatelessWidget {
     */
 
     // Consultar datos a la bdd
-    DBProvider.db.getCourseById(2).then((course) => print(course.name));
-    //DBProvider.db.getTodosLosCourses().then(print);
+    // DBProvider.db.getCourseById(2).then((course) => print(course.name));
+    // DBProvider.db.getTodosLosCourses().then(print);
+
+    // Eliminar todos los datos
+    // DBProvider.db.deleteAllCourses().then(print);
 
     switch (currentIndex) {
       case 0:
