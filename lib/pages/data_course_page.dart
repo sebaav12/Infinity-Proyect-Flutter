@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/provider/db_provider.dart';
 
 class DataCoursePage extends StatelessWidget {
   @override
@@ -25,6 +26,18 @@ class DataCoursePage extends StatelessWidget {
           textColor: Colors.white,
           shape: StadiumBorder(),
           onPressed: () => _mostrarAlert(context),
+        ),
+        FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            final tempCourse = new CourseModel(
+                id: 2, name: 'actualizacion', description: 'nueva');
+            DBProvider.db.updateCourse(tempCourse);
+
+            print('hjasjdsa');
+
+            Navigator.pushNamed(context, "/curso");
+          },
         ),
       ]),
     );

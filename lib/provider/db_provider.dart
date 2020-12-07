@@ -64,7 +64,7 @@ class DBProvider {
 
   Future<CourseModel> getCourseById(int id) async {
     final db = await database;
-    final res = await db.query('Courses2', where: 'id = ?', whereArgs: [id]);
+    final res = await db.query('Courses', where: 'id = ?', whereArgs: [id]);
 
     return res.isNotEmpty ? CourseModel.fromJson(res.first) : null;
   }
@@ -76,5 +76,29 @@ class DBProvider {
     return res.isNotEmpty
         ? res.map((s) => CourseModel.fromJson(s)).toList()
         : [];
+  }
+
+  // Actualizar los Cursos, aun no esta implementada
+  Future<int> updateCourse(CourseModel nuevoCourse) async {
+    final db = await database;
+    final res = await db.update('Courses', nuevoCourse.toJson(),
+        where: 'id = ?', whereArgs: [nuevoCourse.id]);
+    return res;
+  }
+
+  // Eliminar Cursos
+  Future<int> deleteCourse(int id) async {
+    final db = await database;
+    final res = await db.delete('Courses', where: 'id = ?', whereArgs: [id]);
+    return res;
+  }
+
+  // Eliminar todos los cursos
+  Future<int> deleteAllCourses() async {
+    final db = await database;
+    final res = await db.rawDelete('''
+      DELETE FROM Courses    
+    ''');
+    return res;
   }
 }

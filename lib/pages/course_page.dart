@@ -36,7 +36,9 @@ class _CoursePageBody extends StatelessWidget {
     DBProvider.db.nuevoCourseRaw(tempCourse);
     */
 
+    // Consultar datos a la bdd
     DBProvider.db.getCourseById(2).then((course) => print(course.name));
+    //DBProvider.db.getTodosLosCourses().then(print);
 
     switch (currentIndex) {
       case 0:

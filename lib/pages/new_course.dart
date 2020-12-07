@@ -34,7 +34,7 @@ class _NewCourseState extends State<NewCourse> {
                 name: '$name_course', description: '$description_value');
             DBProvider.db.nuevoCourseRaw(tempCourse);
 
-            // Redrirect to  Home Page
+            // Redrirect to Home Page
             Navigator.pushNamed(context, "/");
           },
         ),
