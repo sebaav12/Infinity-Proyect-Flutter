@@ -8,26 +8,37 @@ class NewCourse extends StatefulWidget {
 }
 
 class _NewCourseState extends State<NewCourse> {
-  String _name_course = "";
-  String _description_value = "";
+  String name_course = "";
+  String description_value = "";
 
   @override
   Widget build(BuildContext context) {
-    DatabaseHelper.instance.database;
-
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Nuevo curso"),
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-        children: <Widget>[
-          _newCourse(),
-          Divider(),
-          _description(),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Nuevo curso"),
+        ),
+        body: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+          children: <Widget>[
+            _newCourse(),
+            Divider(),
+            _description(),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            // Insert name, decription in Table Courses
+
+            final tempCourse = new CourseModel(
+                name: '$name_course', description: '$description_value');
+            DBProvider.db.nuevoCourseRaw(tempCourse);
+
+            // Redrirect to  Home Page
+            Navigator.pushNamed(context, "/");
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 
   Widget _newCourse() {
@@ -36,14 +47,14 @@ class _NewCourseState extends State<NewCourse> {
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-        counter: Text("Letras ${_name_course.length}"),
+        counter: Text("Letras ${name_course.length}"),
         hintText: "Nombre del curso",
         labelText: "Nombre",
         suffixIcon: Icon(Icons.accessibility),
       ),
       onChanged: (valor) {
         setState(() {
-          _name_course = valor;
+          name_course = valor;
         });
       },
     );
@@ -55,14 +66,14 @@ class _NewCourseState extends State<NewCourse> {
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-        counter: Text("Letras ${_name_course.length}"),
+        counter: Text("Letras ${name_course.length}"),
         hintText: "Ingrese una descripción",
         labelText: "Descripción",
         suffixIcon: Icon(Icons.library_books),
       ),
       onChanged: (valor) {
         setState(() {
-          _description_value = valor;
+          description_value = valor;
         });
       },
     );

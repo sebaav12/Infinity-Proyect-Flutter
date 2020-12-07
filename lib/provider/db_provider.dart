@@ -1,93 +1,80 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 
-class DatabaseHelper {
-  static final _databaseName = "MyDatabase.db";
-  static final _databaseVersion = 1;
+import 'package:infinity/models/course_model.dart';
+export 'package:infinity/models/course_model.dart';
 
-  static final table = 'my_table';
-
-  static final columnId = '_id';
-  static final columnName = 'name';
-  static final columnAge = 'age';
-
-  // make this a singleton class
-  DatabaseHelper._privateConstructor();
-  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
-
-  // only have a single app-wide reference to the database
+class DBProvider {
   static Database _database;
+  static final DBProvider db = DBProvider._();
+  DBProvider._();
+
   Future<Database> get database async {
     if (_database != null) return _database;
-    // lazily instantiate the db the first time it is accessed
-    _database = await initDatabase();
+
+    _database = await initDB();
+
     return _database;
   }
 
-  // this opens the database (and creates it if it doesn't exist)
-  initDatabase() async {
+  Future<Database> initDB() async {
+    // Path de donde almacenaremos la base de datos
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, _databaseName);
+    final path = join(documentsDirectory.path, 'CoursesDB.db');
+    //print(path);
 
-    print(documentsDirectory.path);
-
-    // Create a database
-    return await openDatabase(path,
-        version: _databaseVersion, onCreate: onCreate);
-  }
-
-  // SQL code to create the database table
-  Future onCreate(Database db, int version) async {
-    await db.execute('''
-          CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY,
-            $columnName TEXT NOT NULL,
-            $columnAge INTEGER NOT NULL
+    // Crear base de datos
+    return await openDatabase(path, version: 1, onOpen: (db) {},
+        onCreate: (Database db, int version) async {
+      await db.execute('''
+          CREATE TABLE Courses(
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            description TEXT
           )
-          ''');
+        ''');
+    });
   }
 
-  // Helper methods
+  // Insertar nuevos cursos en la tabla
 
-  // Inserts a row in the database where each key in the Map is a column name
-  // and the value is the column value. The return value is the id of the
-  // inserted row.
-  Future<int> insert(Map<String, dynamic> row) async {
-    Database db = await instance.database;
-    return await db.insert(table, row);
+  Future<int> nuevoCourseRaw(CourseModel nuevoCourse) async {
+    final id = nuevoCourse.id;
+    final name = nuevoCourse.name;
+    final description = nuevoCourse.description;
+
+    // Verificar la base de datos
+    final db = await database;
+
+    final res = await db.rawInsert('''
+      INSERT INTO Courses( id, name, description )
+        VALUES( $id, '$name', '$description' )
+    ''');
+
+    // Registros insertados
+    print(res);
+
+    return res;
   }
 
-  // All of the rows are returned as a list of maps, where each map is
-  // a key-value list of columns.
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
-    Database db = await instance.database;
-    return await db.query(table);
+  // Get info in table
+
+  Future<CourseModel> getCourseById(int id) async {
+    final db = await database;
+    final res = await db.query('Courses2', where: 'id = ?', whereArgs: [id]);
+
+    return res.isNotEmpty ? CourseModel.fromJson(res.first) : null;
   }
 
-  // All of the methods (insert, query, update, delete) can also be done using
-  // raw SQL commands. This method uses a raw query to give the row count.
-  Future<int> queryRowCount() async {
-    Database db = await instance.database;
-    return Sqflite.firstIntValue(
-        await db.rawQuery('SELECT COUNT(*) FROM $table'));
-  }
+  Future<List<CourseModel>> getTodosLosCourses() async {
+    final db = await database;
+    final res = await db.query('Courses');
 
-  // We are assuming here that the id column in the map is set. The other
-  // column values will be used to update the row.
-  Future<int> update(Map<String, dynamic> row) async {
-    Database db = await instance.database;
-    int id = row[columnId];
-    return await db.update(table, row, where: '$columnId = ?', whereArgs: [id]);
-  }
-
-  // Deletes the row specified by the id. The number of affected rows is
-  // returned. This should be 1 as long as the row exists.
-  Future<int> delete(int id) async {
-    Database db = await instance.database;
-    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+    return res.isNotEmpty
+        ? res.map((s) => CourseModel.fromJson(s)).toList()
+        : [];
   }
 }

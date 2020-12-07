@@ -27,7 +27,16 @@ class _CoursePageBody extends StatelessWidget {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
-    DatabaseHelper.instance.database;
+    /*
+    Codigo para insertar en la base de datos DBProvider
+
+    final tempCourse =
+        new CourseModel(name: "Termo", description: "Curso de plan comun");
+
+    DBProvider.db.nuevoCourseRaw(tempCourse);
+    */
+
+    DBProvider.db.getCourseById(2).then((course) => print(course.name));
 
     switch (currentIndex) {
       case 0:
