@@ -60,6 +60,14 @@ class DBProvider {
     return res;
   }
 
+  Future<int> nuevoCourse(CourseModel nuevoCourse) async {
+    final db = await database;
+    final res = await db.insert('Courses', nuevoCourse.toJson());
+
+    // Es el ID del último registro insertado;
+    return res;
+  }
+
   // Get info in table
 
   Future<CourseModel> getCourseById(int id) async {

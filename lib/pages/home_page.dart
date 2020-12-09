@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/provider/db_provider.dart';
+import 'package:infinity/provider/course_list_provider.dart';
+import 'package:provider/provider.dart';
 
 // change `flutter_database` to whatever your project name is
 
@@ -37,7 +38,28 @@ class HomePage extends StatelessWidget {
 
   // Lista estatica - temporal
   Widget _lista(BuildContext context) {
-    return ListView(
+    // Usar el ScanListProvider redibujando la escena
+    final courseListProvider = Provider.of<CourseListProvider>(context);
+
+    // Carga de cursos
+    courseListProvider.cargarCourses();
+
+    final courses = courseListProvider.courses;
+
+    return ListView.builder(
+      itemCount: courses.length,
+      itemBuilder: (_, i) => ListTile(
+        leading: Icon(Icons.map, color: Theme.of(context).primaryColor),
+        title: Text(courses[i].name),
+        subtitle: Text(courses[i].description),
+        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
+        onTap: () => {
+          print(courses[i].id),
+          Navigator.pushNamed(context, "/curso"),
+        },
+      ),
+    );
+    /* return ListView(
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.map),
@@ -66,6 +88,7 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
+    */
   }
 
   // Button onPressed methods

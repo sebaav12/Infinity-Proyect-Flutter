@@ -8,7 +8,7 @@ class CourseListProvider extends ChangeNotifier {
 
   Future<CourseModel> nuevoCourse(String name, description) async {
     final nuevoCourse = new CourseModel(name: name, description: description);
-    final id = await DBProvider.db.nuevoCourseRaw(nuevoCourse);
+    final id = await DBProvider.db.nuevoCourse(nuevoCourse);
     // Asignar el ID de la base de datos al modelo
     nuevoCourse.id = id;
     this.courses.add(nuevoCourse);

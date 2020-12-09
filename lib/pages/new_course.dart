@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:infinity/provider/db_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:infinity/provider/course_list_provider.dart';
 
 class NewCourse extends StatefulWidget {
   @override
@@ -29,12 +31,18 @@ class _NewCourseState extends State<NewCourse> {
           onPressed: () {
             // Insert name, decription in Table Courses
 
-            final tempCourse = new CourseModel(
-                name: '$name_course', description: '$description_value');
-            DBProvider.db.nuevoCourseRaw(tempCourse);
+            //final tempCourse = new CourseModel(
+            //    name: '$name_course', description: '$description_value');
+            //DBProvider.db.nuevoCourseRaw(tempCourse);
+
+            final courseListProvider =
+                Provider.of<CourseListProvider>(context, listen: false);
+
+            courseListProvider.nuevoCourse(name_course, description_value);
 
             // Redrirect to Home Page
-            Navigator.pushNamed(context, "/");
+            //Navigator.pushNamed(context, "/");
+            Navigator.pop(context);
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);

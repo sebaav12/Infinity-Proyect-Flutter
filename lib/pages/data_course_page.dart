@@ -27,6 +27,8 @@ class DataCoursePage extends StatelessWidget {
           shape: StadiumBorder(),
           onPressed: () => _mostrarAlert(context),
         ),
+
+        /*
         FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
@@ -39,6 +41,7 @@ class DataCoursePage extends StatelessWidget {
             Navigator.pushNamed(context, "/curso");
           },
         ),
+        */
       ]),
     );
   }
