@@ -19,6 +19,14 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Proyect Infinity'),
           centerTitle: true,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.delete_forever),
+                onPressed: () {
+                  Provider.of<CourseListProvider>(context, listen: false)
+                      .borrarTodos();
+                })
+          ],
         ),
 
         // Body
