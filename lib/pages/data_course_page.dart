@@ -1,48 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:infinity/provider/db_provider.dart';
+import 'package:infinity/models/course_model.dart';
 
 class DataCoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final CourseModel course = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      body: ListView(children: <Widget>[
-        RaisedButton(
-          child: Text("Cronometro"),
-          color: Colors.green,
-          textColor: Colors.white,
-          shape: StadiumBorder(),
-          onPressed: () => Navigator.pushNamed(context, "/cronometro"),
-        ),
-        RaisedButton(
-          child: Text("Temporizador"),
-          color: Colors.green,
-          textColor: Colors.white,
-          shape: StadiumBorder(),
-          onPressed: () => Navigator.pushNamed(context, "/temporizador"),
-        ),
-        RaisedButton(
-          child: Text("Eliminar curso"),
-          color: Colors.red,
-          textColor: Colors.white,
-          shape: StadiumBorder(),
-          onPressed: () => _mostrarAlert(context),
-        ),
-
-        /*
-        FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            final tempCourse = new CourseModel(
-                id: 2, name: 'actualizacion', description: 'nueva');
-            DBProvider.db.updateCourse(tempCourse);
-
-            print('hjasjdsa');
-
-            Navigator.pushNamed(context, "/curso");
-          },
-        ),
-        */
-      ]),
+      body: ListView(
+        children: <Widget>[
+          TextField(
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: course.description.toString()),
+          ),
+          RaisedButton(
+            child: Text("Eliminar Curso"),
+            color: Colors.red,
+            textColor: Colors.white,
+            shape: StadiumBorder(),
+            onPressed: () => _mostrarAlert(context),
+          ),
+        ],
+      ),
     );
   }
 

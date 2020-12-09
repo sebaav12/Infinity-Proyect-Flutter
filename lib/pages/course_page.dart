@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infinity/models/course_model.dart';
 
 import 'package:infinity/provider/ui_provider.dart';
 import 'package:infinity/pages/cronometro_page.dart';
@@ -10,9 +11,10 @@ import 'package:provider/provider.dart';
 class CoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final CourseModel course = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Curso X'),
+        title: Text(course.name),
       ),
       body: _CoursePageBody(),
       bottomNavigationBar: CustomNavigationBar(),
@@ -25,6 +27,10 @@ class _CoursePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final uiProvider = Provider.of<UiProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
+
+    final CourseModel course = ModalRoute.of(context).settings.arguments;
+
+    print(course.name);
 
     /*
     Codigo para insertar en la base de datos DBProvider

@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
         onTap: () => {
           print(courses[i].id),
-          Navigator.pushNamed(context, "/curso"),
+          Navigator.pushNamed(context, "/curso", arguments: courses[i]),
         },
       ),
     );

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:infinity/provider/db_provider.dart';
+import 'package:infinity/models/course_model.dart';
 import 'package:provider/provider.dart';
 import 'package:infinity/provider/course_list_provider.dart';
 
