@@ -18,8 +18,6 @@ class _CronometroPageState extends State<CronometroPage> {
     onChangeRawMinute: (value) => print('onChangeRawMinute $value'),
   );
 
-  final _scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();

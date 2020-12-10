@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+
+// Codigo obtenido del video tutorial https://www.youtube.com/watch?v=f2FbW_D8VC8&t=1915s
 
 class TemporizadorPage extends StatefulWidget {
   @override
@@ -189,7 +190,7 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                   ),
                   color: Colors.green,
                   child: Text(
-                    "Start",
+                    "Inicio",
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
@@ -207,7 +208,7 @@ class _TemporizadorPageState extends State<TemporizadorPage> {
                   ),
                   color: Colors.red,
                   child: Text(
-                    "Stop",
+                    "Pausa",
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
