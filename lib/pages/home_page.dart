@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:infinity/provider/course_list_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'dart:math';
+
 // change `flutter_database` to whatever your project name is
 
 class HomePage extends StatelessWidget {
@@ -17,7 +19,7 @@ class HomePage extends StatelessWidget {
 
         // AppBAR
         appBar: AppBar(
-          title: Text('Proyect Infinity'),
+          title: Text('Save Time'),
           centerTitle: true,
           actions: [
             IconButton(
@@ -30,8 +32,12 @@ class HomePage extends StatelessWidget {
         ),
 
         // Body
-        body: Center(
-          child: _lista(context),
+
+        body: Stack(
+          children: <Widget>[
+            _fondoApp(),
+            _lista(context),
+          ],
         ),
 
         // Boton para agregar cursos
@@ -101,4 +107,35 @@ class HomePage extends StatelessWidget {
 
   // Button onPressed methods
 
+  Widget _fondoApp() {
+    final gradiente = Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: FractionalOffset(0.0, 0.6),
+              end: FractionalOffset(0.0, 1.0),
+              colors: [
+            Color.fromRGBO(52, 54, 101, 1.0),
+            Color.fromRGBO(35, 37, 57, 1.0)
+          ])),
+    );
+
+    final cajaRosa = Transform.rotate(
+        angle: -pi / 5.0,
+        child: Container(
+          height: 360.0,
+          width: 360.0,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(80.0),
+              gradient: LinearGradient(colors: [
+                Color.fromRGBO(69, 118, 171, 1.0),
+                Color.fromRGBO(18, 48, 82, 1.0)
+              ])),
+        ));
+
+    return Stack(
+      children: <Widget>[gradiente, Positioned(top: -100.0, child: cajaRosa)],
+    );
+  }
 }
