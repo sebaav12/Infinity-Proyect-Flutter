@@ -4,10 +4,25 @@ import 'package:infinity/provider/course_list_provider.dart';
 import 'package:provider/provider.dart';
 
 class DataCoursePage extends StatelessWidget {
+  final estiloTitulo = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
+  final estiloSubTitulo = TextStyle(fontSize: 18.0, color: Colors.grey);
   @override
   Widget build(BuildContext context) {
     final CourseModel course = ModalRoute.of(context).settings.arguments;
     return Scaffold(
+        body: SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _crearImagen(context),
+          SizedBox(height: 70.0),
+          _crearTexto(context, course),
+          SizedBox(height: 70.0),
+          _crearButton(context, course),
+        ],
+      ),
+    )
+
+        /*
       body: ListView(
         children: <Widget>[
           TextField(
@@ -23,6 +38,76 @@ class DataCoursePage extends StatelessWidget {
             onPressed: () => _mostrarAlert(context, course),
           ),
         ],
+      ),
+      */
+
+        );
+  }
+
+  Widget _crearButton(BuildContext context, course) {
+    return RaisedButton(
+      child: Text("Eliminar Curso"),
+      color: Colors.red,
+      textColor: Colors.white,
+      shape: StadiumBorder(),
+      onPressed: () => _mostrarAlert(context, course),
+    );
+  }
+
+  Widget _crearTexto(BuildContext context, course) {
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 40.0),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(course.description.toString(), style: estiloTitulo),
+                  SizedBox(height: 20.0),
+                  Text('Tiempo invertido: 12:04:00', style: estiloSubTitulo),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _crearTitulo(BuildContext context, course) {
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(course.name.toString(), style: estiloTitulo),
+                ],
+              ),
+            ),
+            Icon(Icons.star, color: Colors.red, size: 30.0),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _crearImagen(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, 'scroll'),
+        child: Image(
+          image: NetworkImage(
+              'https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+          height: 200.0,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
