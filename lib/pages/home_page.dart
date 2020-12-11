@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:infinity/provider/course_list_provider.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +21,11 @@ class HomePage extends StatelessWidget {
 
         // AppBAR
         appBar: AppBar(
-          title: Text('Save Time'),
+          title: Text('Save Time',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold)),
           centerTitle: true,
           actions: [
             IconButton(
@@ -50,7 +56,6 @@ class HomePage extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat);
   }
 
-  // Lista estatica - temporal
   Widget _lista(BuildContext context) {
     // Usar el ScanListProvider redibujando la escena
     final courseListProvider = Provider.of<CourseListProvider>(context);
@@ -67,42 +72,13 @@ class HomePage extends StatelessWidget {
         title: Text(courses[i].name),
         subtitle: Text(courses[i].description),
         trailing: Icon(Icons.keyboard_arrow_right, color: Colors.grey),
+        focusColor: Colors.red,
         onTap: () => {
           print(courses[i].id),
           Navigator.pushNamed(context, "/curso", arguments: courses[i]),
         },
       ),
     );
-    /* return ListView(
-      children: <Widget>[
-        ListTile(
-          leading: Icon(Icons.map),
-          title: Text('Probabilidad y Estadistica'),
-
-          // Accion de ir a cronometro
-          onTap: () {
-            Navigator.pushNamed(context, "/curso");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.photo_album),
-          title: Text('Termodinamica'),
-          // Accion de ir a cronometro
-          onTap: () {
-            Navigator.pushNamed(context, "/curso");
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.phone),
-          title: Text('Bilogia de la Celula'),
-          // Accion de ir a cronometro
-          onTap: () {
-            Navigator.pushNamed(context, "/curso");
-          },
-        ),
-      ],
-    );
-    */
   }
 
   // Button onPressed methods

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:infinity/pages/home_page.dart';
 import 'package:infinity/provider/course_list_provider.dart';
 
@@ -13,6 +14,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
+        .copyWith(statusBarColor: Colors.transparent));
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => new UiProvider()),

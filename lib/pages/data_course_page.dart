@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infinity/models/course_model.dart';
+import 'package:infinity/provider/course_list_provider.dart';
+import 'package:provider/provider.dart';
 
 class DataCoursePage extends StatelessWidget {
   @override
@@ -18,14 +20,14 @@ class DataCoursePage extends StatelessWidget {
             color: Colors.red,
             textColor: Colors.white,
             shape: StadiumBorder(),
-            onPressed: () => _mostrarAlert(context),
+            onPressed: () => _mostrarAlert(context, course),
           ),
         ],
       ),
     );
   }
 
-  void _mostrarAlert(BuildContext context) {
+  void _mostrarAlert(BuildContext context, course) {
     showDialog(
         context: context,
         barrierDismissible: true,
@@ -49,7 +51,9 @@ class DataCoursePage extends StatelessWidget {
               FlatButton(
                 child: Text("Ok"),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Provider.of<CourseListProvider>(context, listen: false)
+                      .borrarCoursePorId(course.id);
+                  Navigator.popUntil(context, ModalRoute.withName('/'));
                 },
               ),
             ],
