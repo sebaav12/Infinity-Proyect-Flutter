@@ -22,24 +22,7 @@ class DataCoursePage extends StatelessWidget {
       ),
     )
 
-        /*
-      body: ListView(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: course.description.toString()),
-          ),
-          RaisedButton(
-            child: Text("Eliminar Curso"),
-            color: Colors.red,
-            textColor: Colors.white,
-            shape: StadiumBorder(),
-            onPressed: () => _mostrarAlert(context, course),
-          ),
-        ],
-      ),
-      */
+       
 
         );
   }
