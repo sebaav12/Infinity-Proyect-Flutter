@@ -5,9 +5,15 @@ import 'package:infinity/provider/course_list_provider.dart';
 
 import 'package:infinity/provider/ui_provider.dart';
 import 'package:infinity/routes/routes.dart';
+import 'package:infinity/share_prefs/preferencias_usuario.dart';
+
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = new PreferenciasUsuario();
+  await prefs.initPrefs();
+
   runApp(MyApp());
 }
 
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
               builder: (BuildContext context) => (HomePage()));
         },
-        theme: ThemeData.dark(),
+        //theme: (prefs.colorSecundario) ? ThemeData.dark() : null,
       ),
     );
   }

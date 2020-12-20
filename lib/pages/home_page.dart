@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:infinity/provider/course_list_provider.dart';
+import 'package:infinity/share_prefs/preferencias_usuario.dart';
+import 'package:infinity/widgets/menu_widget.dart';
 import 'package:provider/provider.dart';
 
 import 'dart:math';
@@ -10,6 +12,7 @@ import 'dart:math';
 
 class HomePage extends StatelessWidget {
   final estiloTexto = new TextStyle(fontSize: 25);
+  final prefs = new PreferenciasUsuario();
 
   @override
 
@@ -35,10 +38,12 @@ class HomePage extends StatelessWidget {
                       .borrarTodos();
                 })
           ],
+          backgroundColor: (prefs.colorSecundario) ? Colors.teal : Colors.blue,
         ),
 
         // Body
 
+        drawer: MenuWidget(),
         body: Stack(
           children: <Widget>[
             _fondoApp(),
