@@ -9,6 +9,8 @@ import 'package:infinity/share_prefs/preferencias_usuario.dart';
 
 import 'package:provider/provider.dart';
 
+import 'share_prefs/preferencias_usuario.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
