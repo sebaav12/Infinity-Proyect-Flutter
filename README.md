@@ -1,10 +1,22 @@
-# timeline
+# Time Line App
 
-A new Flutter project.
+Proyecto en flutter que busca desarrollar una app movil que permita agregar cursos, editarlos y medir el tiempo que se invierte en su estudio, por medio de herramientas de temporizador y cronometro.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Funcionalidades existentes
+
++ Se pueden crear cursos
++ Cronometro
++ Temporizador
++ Lista de curos
+
+## Funcionalidades futuras
+
++ Se actualiza el tiempo de estudio invertido en un curso
++ Darkmmode
++ Color secundario de appbar
++ Bloqueo de app secundarias para asegurar la concentracion en el estudio
+
 
 A few resources to get you started if this is your first Flutter project:
 
